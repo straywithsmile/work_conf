@@ -52,8 +52,9 @@ alias conv_achieve="svn up achievement/ && python achieve.py achievement/achieve
 alias conv_achieve_var="svn up achievement/ && python conv_var.py achievement/成就统计数据表.xls ../../../wanfa/event/utils.c"
 alias post-review="post-review --target-groups=server"
 export LANG=zh_CN.GBK
+
 #export HOME=/home1/ourhome/richard
-export PATH=$HOME/.bin/bin:$HOME/.bin:$PATH
+export PATH=$HOME/bin:$PATH:/usr/local/bin:/usr/local/sbin
 
 export GIT_EDITOR=vim
 export LOGNAME="richardcao"

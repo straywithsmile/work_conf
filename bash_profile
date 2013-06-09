@@ -53,7 +53,7 @@ alias conv_achieve_var="svn up achievement/ && python conv_var.py achievement/³É
 alias post-review="post-review --target-groups=server"
 export LANG=zh_CN.GBK
 #export HOME=/home1/ourhome/richard
-export PATH=$HOME/.bin/bin:$HOME/.bin:$PATH
+export PATH=$HOME/bin:$PATH:/usr/local/bin:/usr/local/sbin
 #cd
 set -o vi
 export GIT_EDITOR=vim

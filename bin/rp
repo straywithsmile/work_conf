@@ -1,0 +1,8 @@
+#!/usr/local/bin/bash
+ 
+if [ $# -eq 3 ]
+then
+        sed "s/$1/$2/g" $3 > /tmp/rp_string.tmp && cp /tmp/rp_string.tmp $3
+else
+        echo "rp orig_string replace_string file"
+fi

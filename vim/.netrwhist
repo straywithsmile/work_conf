@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/richard/logic/test/huodong'
+let g:netrw_dirhist_2='/home/richard/engine/command_opt'
+let g:netrw_dirhist_3='/home/richard/logic/trunk'
+let g:netrw_dirhist_4='/home/richard/logic/trunk/mission'
+let g:netrw_dirhist_5='/home/richard/logic/trunk/mission/delay_reward'
+let g:netrw_dirhist_6='/home/richard/logic/pure_trunk/2018_oslog'
+let g:netrw_dirhist_7='/home/richard/logic/trunk/huodong/2010_51game'

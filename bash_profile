@@ -6,7 +6,7 @@
 #
 
 # remove /usr/games and /usr/X11R6/bin if you want
-PATH=$HOME/.bin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/X11R6/bin; export PATH
+PATH=/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/X11R6/bin; export PATH
 
 # Setting TERM is normally done through /etc/ttys.  Do only override
 # if you're sure that you'll never log in via telnet or xterm or a
@@ -27,7 +27,6 @@ alias l='ls -alh'
 alias ll="ls -alh"
 alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
-alias ecw="vim /home1/ourhome/richard/.bin/cw.sh"
 #PS1="\[\e]0;\w\a\]\n\[\e[33m\]\w\[\e[0m\]"
 PS1="\w "
 #PS1="`whoami`@`hostname | sed 's/\..*//'`"
@@ -41,14 +40,12 @@ alias ls="ls -G"
 alias vo="vim -R"
 alias todo="vim /home/richard/.todo.etd"
 alias vi="vim"
-alias vim="vim -p"
 alias lchg="svn di -rPREV:HEAD"
 #alias post-review="post-review --target-groups=server"
 export LANG=zh_CN.GBK
 
-#export HOME=/home1/ourhome/richard
 export GOROOT=$HOME/go
-export PATH=$GOROOT/bin:$HOME/bin:$PATH:/usr/local/bin:/usr/local/sbin
+export PATH=$GOROOT/bin:$HOME/bin:$PATH
 
 export GIT_EDITOR=vim
 export PYTHONDONTWRITEBYTECODE=x

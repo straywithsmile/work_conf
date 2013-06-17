@@ -43,9 +43,7 @@ alias todo="vim /home/richard/.todo.etd"
 alias vi="vim"
 alias vim="vim -p"
 alias lchg="svn di -rPREV:HEAD"
-alias conv_achieve="svn up achievement/ && python achieve.py achievement/achievement.xls ../../../wanfa/achievement/main.c"
-alias conv_achieve_var="svn up achievement/ && python conv_var.py achievement/成就统计数据表.xls ../../../wanfa/event/utils.c"
-alias post-review="post-review --target-groups=server"
+#alias post-review="post-review --target-groups=server"
 export LANG=zh_CN.GBK
 
 #export HOME=/home1/ourhome/richard
@@ -53,8 +51,7 @@ export GOROOT=$HOME/go
 export PATH=$GOROOT/bin:$HOME/bin:$PATH:/usr/local/bin:/usr/local/sbin
 
 export GIT_EDITOR=vim
-export LOGNAME="richardcao"
-PYTHONDONTWRITEBYTECODE=x; export PYTHONDONTWRITEBYTECODE;
+export PYTHONDONTWRITEBYTECODE=x
 export SVN_EDITOR=vim
 export EDITOR=vim
 

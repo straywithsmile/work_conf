@@ -23,18 +23,13 @@ ENV=$HOME/.shrc; export ENV
 
 [ -x /usr/games/fortune ] && /usr/games/fortune freebsd-tips
 
-alias fs='~/.bin/fs'
-alias rp='~/.bin/rp'
-alias cword='~/.bin/change_word_in_file.sh'
-alias help='~/.bin/help'
-alias ctags='~/.bin/ctags'
 alias l='ls -alh'
 alias ll="ls -alh"
 alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
 alias ecw="vim /home1/ourhome/richard/.bin/cw.sh"
-PS1="\[\e]0;\w\a\]\n\[\e[33m\]\w\[\e[0m\]"
-#PS1="\w\$ "
+#PS1="\[\e]0;\w\a\]\n\[\e[33m\]\w\[\e[0m\]"
+PS1="\w "
 #PS1="`whoami`@`hostname | sed 's/\..*//'`"
 case `id -u` in
         0) PS1="${PS1}# ";;
@@ -54,10 +49,23 @@ alias post-review="post-review --target-groups=server"
 export LANG=zh_CN.GBK
 
 #export HOME=/home1/ourhome/richard
-export PATH=$HOME/bin:$PATH:/usr/local/bin:/usr/local/sbin
+export GOROOT=$HOME/go
+export PATH=$GOROOT/bin:$HOME/bin:$PATH:/usr/local/bin:/usr/local/sbin
 
 export GIT_EDITOR=vim
 export LOGNAME="richardcao"
 PYTHONDONTWRITEBYTECODE=x; export PYTHONDONTWRITEBYTECODE;
 export SVN_EDITOR=vim
 export EDITOR=vim
+
+#gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"
+
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+	. "${HOME}/.gpg-agent-info"
+	export GPG_AGENT_INFO
+	export SSH_AUTH_SOCK
+	export SSH_AGENT_PID
+fi
+
+GPG_TTY=$(tty)
+export GPG_TTY

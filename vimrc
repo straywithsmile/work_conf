@@ -24,6 +24,7 @@ set nu
 
 au BufRead,BufNewFile *.c       if (getcwd() =~ 'logic' && &ft == 'c') | set ft=lpc | let lpc_pre_v22=1 | endif
 au BufRead,BufNewFile *.h       if (getcwd() =~ 'logic' && &ft == 'h') | set ft=lpc | let lpc_pre_v22=1 | endif
+au BufRead,BufNewFile *.go      set ft=go
 set backspace=indent,eol,start
 
 ""&lt;ESC&gt;i:inoremap ( ()&lt;ESC&gt;i
@@ -52,7 +53,21 @@ set backspace=indent,eol,start
 ":inoremap > <c-r>=ClosePair('>')<CR>
 ":inoremap " ""<ESC>i
 ":inoremap ' ''<ESC>i
-:inoremap { <CR>{<CR>}<ESC>O
+"key :inoremap { <CR>{<CR>}<ESC>O
+
+function! FillRound()
+	let line = getline(".")
+	let previous_char = l:line[col(".")-1]
+
+	"if index(["("], l:previous_char) != -1
+	if previous_char == '('
+		execute "normal! a\{});\<Esc>\<Left>\<Left>i"
+	else
+		execute "normal! a\<CR>{\<CR>}\<Esc>O"
+	end
+endfunction 
+
+inoremap { <ESC>:call FillRound()<CR>a
 
 "function ClosePair(char)
 "	if getline('.')[col('.') - 1] == a:char

@@ -61,3 +61,7 @@ export LOGNAME="richardcao"
 PYTHONDONTWRITEBYTECODE=x; export PYTHONDONTWRITEBYTECODE;
 export SVN_EDITOR=vim
 export EDITOR=vim
+export GOROOT=$HOME/go
+export GOBIN=$GOROOT/bin
+export PATH=$PATH:$GOBIN
+export GOPATH=$HOME/go_src

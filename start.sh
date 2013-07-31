@@ -5,7 +5,7 @@ logic_dir=$PWD/$2
 port=$3
 compile=$4
 configname=${engine_dir}config.$port
-shell_port=`expr $3 + 10`
+#shell_port=`expr $3 + 10`
 envdir=$PWD/tx2env/
 
 if [ ! -d $logic_dir ]
@@ -26,12 +26,10 @@ then
 	exit 3
 fi
 
-mkdir -p "${logic_dir}${port}_log"
-#ln -sv "${logic_dir}${port}_log" "${logic_dir}/log"
-#mkdir -p ${logic_dir}${port}_log/{sys,npc,user,god,oslog}
-#mkdir -p "${logic_dir}${port}_oslog"
+mkdir -p "${logic_dir}log/{sys,npc,user,god,oslog}"
+mkdir -p "${logic_dir}oslog"
 mkdir -p "${logic_dir}log"
-mkdir -p ${engine_dir}log
+mkdir -p "${engine_dir}log"
 
 if [ -f ${engine_dir}osd ]
 then

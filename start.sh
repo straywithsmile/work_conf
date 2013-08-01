@@ -80,7 +80,7 @@ fi
 #echo "use ${engine_dir} compile ${logic_dir} ${START_FLAG}"
 #exit 0
 TX_HOSTNAME=`hostname`
-TX_HOSTIP=`grep $TX_HOSTNAME /etc/hosts|cut -f 1|head -1`
+TX_HOSTIP=`grep $TX_HOSTNAME /etc/hosts|cut -d " " -f 1|head -1`
 echo host ip = $TX_HOSTIP
 
 echo "" > $configname

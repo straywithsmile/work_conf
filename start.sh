@@ -42,16 +42,18 @@ then
 		echo "OSD md5 check error, Overwrite it"
 		#cp ${envdir}osd ${engine_dir}osd
 	fi
-fi
-
-if [ ! -f ${engine_dir}osd ]
-then
+else
 	cp ${envdir}osd ${engine_dir}
 fi
 
+#if [ ! -f ${engine_dir}osd ]
+#then
+#	cp ${envdir}osd ${engine_dir}
+#fi
+
 if [ ! -f ${engine_dir}osd ]
 then
-	echo "NO osd"
+	echo "NO osd, start engine failed"
 	exit 4
 fi
 

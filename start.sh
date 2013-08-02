@@ -14,9 +14,15 @@ then
 	exit 1
 fi
 
-if [ ! -d $engine_dir -a ! -f ${engine_dir}txos ]
+if [ ! -d $engine_dir ]
 then
-	echo "no Engine : $engine_dir"
+	echo "no Engine dir: $engine_dir"
+	exit 2
+fi
+
+if [ ! -f ${engine_dir}txos ]
+then
+	echo "no Engine engine: ${engine_dir}txos"
 	exit 2
 fi
 

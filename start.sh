@@ -63,18 +63,21 @@ then
 	exit 4
 fi
 
-if [ -f ${engine_dir}tx2.data ]
-then
-	rm ${engine_dir}tx2.data
-fi
-
 if [ ! -x ${logic_dir}db ]
 then
 	ln -sv /tmp/tx2db ${logic_dir}db
 fi
 
 mkdir -p ${logic_dir}dat/
-cp ${envdir}host.conf ${logic_dir}dat/
+if [ ! -f ${logic_dir}dat/host.conf ]
+then
+	cp ${envdir}host.conf ${logic_dir}dat/
+fi
+
+if [ ! -f ${logic_dir}etc/internal_server_info.txt ]
+then
+	cp ${envdir}internal_server_info.txt ${logic_dir}etc/
+fi
 
 logic_branch=${logic_dir##*logic/}
 logic_branch_head=${logic_branch:0:20}

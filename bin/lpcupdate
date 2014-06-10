@@ -1,0 +1,8 @@
+#!/usr/local/bin/bash
+#
+if [ $# -eq 2 ]
+then
+	echo "update $2" | nc -w1 localhost $1
+else
+	echo "lpcupdate port file"
+fi

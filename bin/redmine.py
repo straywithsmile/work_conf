@@ -36,7 +36,7 @@ if __name__ == "__main__":
 			time_stat[item_type] = 0.0
 		type_stat[item_type].append("%s %s" % (idx, item_name))
 		time_stat[item_type] += float(time_len)
-		if len(type_stat[item_type]) >= 30:
+		if len(type_stat[item_type]) >= 20:
 			print_stat_item_info(type_stat, time_stat, item_type)
 			type_stat[item_type] = []
 			time_stat[item_type] = 0.0

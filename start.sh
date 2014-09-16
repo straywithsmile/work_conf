@@ -80,11 +80,12 @@ then
 fi
 
 logic_branch=${logic_dir##*logic/}
-logic_branch_head=${logic_branch:0:20}
-if [ $logic_branch_head = "across_target_server" ]
-then
-	START_FLAG="-DACROSS_TARGET_SERVER=1"
-fi
+
+#logic_branch_head=${logic_branch:0:20}
+#if [ $logic_branch_head = "across_target_server" ]
+#then
+#	START_FLAG="-DACROSS_TARGET_SERVER=1"
+#fi
 
 #echo "use ${engine_dir} compile ${logic_dir} ${START_FLAG}"
 #exit 0
@@ -121,12 +122,18 @@ echo "" >> $configname
 
 cd ${engine_dir}
 
+#if [ ! -z ${compile} ]
+#then
+#	./txos $configname -n -b ${START_FLAG}
+#	echo "use ${engine_dir} compile ${logic_dir} ${START_FLAG}"
+#	tail ${logic_dir}log/sys/error.dat
+#	exit 0
+#fi
+
 if [ ! -z ${compile} ]
 then
-	#./txos $configname -n -b -DACROSS_TARGET_SERVER=1
-	#echo "use ${engine_dir} compile ${logic_dir} -DACROSS_TARGET_SERVER=1"
-	./txos $configname -n -b ${START_FLAG}
-	echo "use ${engine_dir} compile ${logic_dir} ${START_FLAG}"
+	./txos $configname -n -b
+	echo "use ${engine_dir} compile ${logic_dir}"
 	tail ${logic_dir}log/sys/error.dat
 	exit 0
 fi
@@ -170,8 +177,5 @@ done
 echo "use ${engine_dir} start ${logic_dir} ${START_FLAG}"
 #valgrind --tool=memcheck --leak-check=yes --error-limit=no ./txos.bak $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/"
 #nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/" 2>&1 > "${logic_dir}${port}_oslog/debug.log" &
-nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
-#./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -D__SELF_TEST__
-#./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/" 
-#./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/" 2>&1 > "${logic_dir}${port}_oslog/debug.log"
-#./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/" &
+#nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
+nohup ./txos $configname -n -f -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &

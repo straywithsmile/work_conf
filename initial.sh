@@ -12,5 +12,5 @@ ln -sv ${pwd}/vimrc ${home}/.vimrc
 
 mkdir -p ${home}/tx2env
 touch ${home}/tx2env/host.conf
-echo "use=unknown" >> ${ home}/tx2env/internal_server_info.txt
-echo "desc=unknown" >> ${ home}/tx2env/internal_server_info.txt
+echo "use=unknown" >> ${home}/tx2env/internal_server_info.txt
+echo "desc=unknown" >> ${home}/tx2env/internal_server_info.txt

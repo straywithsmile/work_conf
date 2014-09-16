@@ -41,7 +41,7 @@ alias vo="vim -R"
 alias todo="vim /home/richard/.todo.etd"
 alias vi="vim"
 alias lchg="svn di -rPREV:HEAD"
-#alias post-review="post-review --target-groups=server"
+alias post-review="post-review --target-groups=xy2_server"
 export LANG=zh_CN.GBK
 
 export GOROOT=$HOME/go

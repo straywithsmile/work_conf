@@ -91,6 +91,12 @@ logic_branch=${logic_dir##*logic/}
 #exit 0
 TX_HOSTNAME=`hostname`
 TX_HOSTIP=`grep $TX_HOSTNAME /etc/hosts|cut -d " " -f 1|head -1`
+
+if [ -z ${TX_HOSTIP} ]
+then
+       TX_HOSTIP="127.0.0.1"
+fi
+
 echo host ip = $TX_HOSTIP
 
 echo "" > $configname

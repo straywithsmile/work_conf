@@ -1,0 +1,43 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+alias ls="ls -G"
+alias vo="vim -R"
+alias todo="vim /home/richard/.todo.etd"
+alias vi="vim"
+alias lchg="svn di -rPREV:HEAD"
+alias post-review="post-review --target-groups=xy2_server"
+alias ll="ls -alh"
+alias te="tail log/sys/error.dat"
+alias tl="tail log/debug.log"
+alias t="tmux"
+alias tt="tmux attach -t"
+
+export GIT_EDITOR=vim
+export PYTHONDONTWRITEBYTECODE=x
+export SVN_EDITOR=vim
+export EDITOR=vim
+
+export PATH=$HOME/bin:$PATH
+
+snet() {
+	macsnet.py $@
+	if [ -f "/tmp/richard_macsnet.cmd" ]
+	then
+		cmd=`head -n1 /tmp/richard_macsnet.cmd`
+		rm -f /tmp/richard_macsnet.cmd
+		eval $cmd
+	fi
+}
+
+#export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD

@@ -23,24 +23,33 @@ internal_server = {
 }
 #打开http链接，得到gdsc数据
 def open_http(product, serverlist_url):
-    global server_list
-    print '开始取得gsdc列表，产品为', product
+	global server_list
+	print '开始取得gsdc列表，产品为', product
 
-    if product == "mhxy" or product == "dh2":
-        f = urllib2.urlopen(serverlist_url)
-        print '连接完成，开始获取列表...'
-        server_list = f.readlines()
-        f.close()
-        if len(server_list) == 0:
-            print "没有取到gdsc 数据，请关闭然后重试"
-            return
-    elif product == "dh3":
-        import urllib
-        urllib.urlretrieve("http://mcs.netease.com/interface/getsynctaginfo/?pid=3", "server_tag.py")
-        print '得到列表完毕，开始分析格式...'
-    else :
-        print "错误的列表!"
-        sys.exit(1)
+	if product == "mhxy" or product == "dh2":
+		try:
+			f = urllib2.urlopen(serverlist_url, None, timeout=0)
+        		print '连接完成，开始获取列表...'
+        		server_list = f.readlines()
+			tmp_file = open("/tmp/serverlist_cache", "w")
+			tmp_file.writelines(server_list)
+			tmp_file.close()
+		except:
+        		print '连接失败，尝试从文件/tmp/serverlist_cache获取列表...'
+			f = open("/tmp/serverlist_cache", "r")
+			server_list = f.readlines()
+
+        	f.close()
+        	if len(server_list) == 0:
+			print "没有取到gdsc 数据，请关闭然后重试"
+			return
+	elif product == "dh3":
+		import urllib
+		urllib.urlretrieve("http://mcs.net" + "ease.com/interface/getsynctaginfo/?pid=3", "server_tag.py")
+		print '得到列表完毕，开始分析格式...'
+	else :
+		print "错误的列表!"
+		sys.exit(1)
     
 def parse_server_list(product):
     global server_list
@@ -171,7 +180,7 @@ def usage():
     login hostnum : 修改xy2.ini中的default_ip，不填hostnum默认为500，IP为10.172为内服，游戏路径在snet.ini中配置，如下:
         game_paths = D:\\xy2\\
     list : 在securecrt_path的配置目录下Config\\Sessions\\外服\\ 目录中，生成目前服务器列表中所有服务器的配置,列表地址如下:
-        serverlist_url = http://dhrsync.x.netease.com:8660/galaxy/port/get_server/get_server.all
+        serverlist_url = http://dhrsync.x.xxx.com:8660/galaxy/port/get_server/get_server.all
         注意，这一操作，将会删除所有外服目录下的所有文件
     """
     
@@ -206,7 +215,7 @@ def process(user_input):
     username = "richardcao"
     port = "32200"
     product = "dh2"
-    serverlist_url = "http://dhrsync.x.netease.com:8660/galaxy/port/get_server_list"
+    serverlist_url = "http://dhrsync.x.net" + "ease.com:8660/galaxy/port/get_server_list"
     game_paths = ""
     
     #得到列表

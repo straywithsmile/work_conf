@@ -198,8 +198,10 @@ def output_newest():
         server_info = internal_server[i]
 	print i, server_info[0], server_info[1], server_info[3], server_info[4]
 
+exe_command = ""
 def process(user_input):
     global server_set
+    global exe_command
     #¶ÁÈ¡ÅäÖÃÎÄ¼ş
     username = "richardcao"
     port = "32200"
@@ -249,9 +251,16 @@ def process(user_input):
         #server_name = user_input + "@" + server_set[user_input][1] +"@" + ip
         print "³¢ÊÔµÇÂ¼", user_input, ":", server_set[user_input][0], server_set[user_input][1], server_set[user_input][3], server_set[user_input][4]
         #print newtab, type(newtab)
-        #richard:try export
-	cmd = "ssh -F /opt/local/etc/ssh/ssh_config %s@%s -p %s" % (username, server_set[user_input][0], port)
-	print cmd
+	if exe_command == "ssh":
+		cmd = "ssh -F /opt/local/etc/ssh/ssh_config %s@%s -p %s" % (username, server_set[user_input][0], port)
+	elif exe_command == "sftp":
+		#sftp -F /opt/local/etc/ssh/ssh_config -P 32200 192.168.228.78
+		cmd = "sftp -F /opt/local/etc/ssh/ssh_config -P %s %s@%s" % (port, username, server_set[user_input][0])
+	else:
+		print "can't execute %s, enable is ssh|sftp" % exe_command
+		return
+
+	print "EXE : %s" % cmd
 	cmd = 'echo "%s" > /tmp/richard_macsnet.cmd' % cmd
 	os.system(cmd)
     elif len(user_input) == 2:
@@ -274,9 +283,10 @@ def process(user_input):
         print "ÊäÈë´íÎó"
 
 if __name__ == "__main__":
-	if len(sys.argv) < 2:
+	if len(sys.argv) < 3:
 		usage()
 		sys.exit(1)
-	user_input = " ".join(sys.argv[1:])
+	exe_command = sys.argv[1]
+	user_input = " ".join(sys.argv[2:])
 	#user_input = sys.argv[1] + sys.argv[2]
 	process(user_input)

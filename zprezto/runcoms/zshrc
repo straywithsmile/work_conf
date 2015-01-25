@@ -40,4 +40,14 @@ snet() {
 	fi
 }
 
+fnet() {
+	macsnet.py sftp $@
+	if [ -f "/tmp/richard_macsnet.cmd" ]
+	then
+		cmd=`head -n1 /tmp/richard_macsnet.cmd`
+		rm -f /tmp/richard_macsnet.cmd
+		eval $cmd
+	fi
+}
+
 #export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD

@@ -11,7 +11,7 @@ else
 	branch_name="branch/${branch}"
 fi
 
-svn_path=https://svn-dhxy2.gz.netease.com/products/xy2/develop/server/${part}/${branch_name}
+svn_path=svn://svn-dhxy2.gz.netease.com/products/xy2/develop/server/${part}/${branch_name}
 svn info ${svn_path}
 if [ $? -ne 0 ];then
 	echo "svn path ${svn_path} does NOT exist"

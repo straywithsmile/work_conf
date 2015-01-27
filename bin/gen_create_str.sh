@@ -81,14 +81,16 @@ svn info $logic_dir
 if [ $? -ne 0 ];then
 	echo LOGIC_PATH ${logic_dir} does NOT_EXIST
 fi
+logic_dir="svn${logic_dir:5:100}"
 
 svn info $engine_dir
 if [ $? -ne 0 ];then
 	echo ENGINE_PATH ${engine_dir} does NOT_EXIST
 fi
+engine_dir="svn${engine_dir:5:100}"
 
 echo ${logic_state} ${engine_state}
 
 #example: ./create_simulate.sh simulate https://svn-dhxy2.gz.netease.com/products/xy2/develop/server/logic/trunk trunk https://svn-dhxy2.gz.netease.com/products/xy2/develop/server/os/trunk ~tx2/osd/release/release/osd
-echo LOGNAME=mincao ./create_simulate.sh ${create_env} ${logic_dir} ${create_branch} ${engine_dir} "~tx2/osd/release/release/osd"
+echo "./create_simulate.sh ${create_env} ${logic_dir} ${create_branch} ${engine_dir} ~tx2/osd/release/release/osd"
 exit 0

@@ -22,6 +22,7 @@ alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
 alias t="tmux"
 alias tt="tmux attach -t"
+alias aj="autojump"
 
 if [[ -z "$LANG" ]]; then
   export LANG='zh_CN.GB18030'
@@ -32,7 +33,7 @@ export PYTHONDONTWRITEBYTECODE=x
 export SVN_EDITOR=vim
 export EDITOR=vim
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:/opt/local/bin:$PATH
 
 snet() {
 	macsnet.py ssh $@

@@ -22,7 +22,6 @@ alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
 alias t="tmux"
 alias tt="tmux attach -t"
-alias aj="autojump"
 
 if [[ -z "$LANG" ]]; then
   export LANG='zh_CN.GB18030'
@@ -54,5 +53,9 @@ fnet() {
 		eval $cmd
 	fi
 }
+
+source ~/work_conf/autojump.zsh
+#[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+plugins=(autojump)
 
 #export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD

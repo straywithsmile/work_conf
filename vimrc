@@ -8,6 +8,7 @@ set mouse=a
 set scrolloff=3
 set background=dark
 set incsearch
+set ambiwidth=double
 set hlsearch
 "set foldmethod=syntax
 "set foldcolumn=4

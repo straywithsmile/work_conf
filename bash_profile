@@ -23,10 +23,12 @@ ENV=$HOME/.shrc; export ENV
 
 [ -x /usr/games/fortune ] && /usr/games/fortune freebsd-tips
 
-alias l='ls -alh'
+alias l='ls'
 alias ll="ls -alh"
 alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
+alias t="tmux"
+alias tt="tmux attach -t"
 #PS1="\[\e]0;\w\a\]\n\[\e[33m\]\w\[\e[0m\]"
 PS1="\w "
 #PS1="`whoami`@`hostname | sed 's/\..*//'`"

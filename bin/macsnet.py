@@ -28,7 +28,7 @@ def open_http(product, serverlist_url):
 
 	if product == "mhxy" or product == "dh2":
 		try:
-			f = urllib2.urlopen(serverlist_url, None, timeout=0)
+			f = urllib2.urlopen(serverlist_url, None, timeout=4)
         		print '连接完成，开始获取列表...'
         		server_list = f.readlines()
 			tmp_file = open("/tmp/serverlist_cache", "w")

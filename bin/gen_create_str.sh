@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 date_str=`date "+%Y_%m_%d"`
 svn_head="https://svn-dhxy2.gz.netease.com/products/xy2/develop/server/"
 
@@ -55,6 +56,7 @@ fi
 
 #echo $#
 
+echo $logic_svn_branch
 if [ $logic_svn_branch = "release" ];then
 	logic_dir=${svn_head}logic/release/rel_${date_str}
 elif [ ${logic_svn_branch:0:4} = "test" ];then
@@ -64,7 +66,9 @@ elif [ $logic_svn_branch = "trunk" ];then
 else
 	logic_dir=${svn_head}logic/branch/${logic_svn_branch}_${date_str}
 fi
+echo $logic_svn_branch
 
+echo $engine_svn_branch
 if [ $engine_svn_branch = "release" ];then
 	engine_dir=${svn_head}os/release/rel_${date_str}
 elif [ ${engine_svn_branch:0:4} = "test" ];then
@@ -74,6 +78,7 @@ elif [ $engine_svn_branch = "trunk" ];then
 else
 	engine_dir=${svn_head}os/branch/${engine_svn_branch}_${date_str}
 fi
+echo $engine_svn_branch
 
 IAM=`whoami`
 

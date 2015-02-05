@@ -10,6 +10,7 @@ ln -sv ${pwd}/stop.sh ${home}/stop.sh
 ln -sv ${pwd}/vim ${home}/.vim
 ln -sv ${pwd}/vimrc ${home}/.vimrc
 ln -sv ${pwd}/zprezto ${home}/.zprezto
+ln -sv ${pwd}/autojump ${home}/.autojump 
 zsh ./stand_init.zsh
 
 mkdir -p ${home}/tx2env

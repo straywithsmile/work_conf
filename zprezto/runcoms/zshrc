@@ -54,7 +54,7 @@ fnet() {
 	fi
 }
 
-[[ -s /home/richard/.autojump/etc/profile.d/autojump.sh ]] && source /home/richard/.autojump/etc/profile.d/autojump.sh
+[[ -s "${ZDOTDIR:-$HOME}/.autojump/etc/profile.d/autojump.sh" ]] && source "${ZDOTDIR:-$HOME}/.autojump/etc/profile.d/autojump.sh"
 
 autoload -U compinit && compinit -u
 

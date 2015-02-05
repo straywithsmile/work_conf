@@ -54,8 +54,8 @@ fnet() {
 	fi
 }
 
-source ~/work_conf/autojump.zsh
-#[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
-plugins=(autojump)
+[[ -s /home/richard/.autojump/etc/profile.d/autojump.sh ]] && source /home/richard/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
 
 #export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD

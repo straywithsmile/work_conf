@@ -8,7 +8,8 @@ then
 		find . -name "*" | xargs grep -n --color=auto "$2"
 	else
 		#find . -name "*$1" | xargs grep --color=auto "$2"
-		gfind . -path '*/.svn' -prune -o -type f -name "*.$1" | xargs grep -n "$2" # -A2 -B4
+		#gfind . -path '*/.svn' -prune -o -type f -name "*.$1" | xargs grep -n "$2" # -A2 -B4
+		find . -path '*/.svn' -prune -o -type f -name "*.$1" | xargs grep -n "$2" # -A2 -B4
 	fi
 	echo "------------------------------------- end -------------------------------------"
 else

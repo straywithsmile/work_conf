@@ -59,3 +59,7 @@ fnet() {
 autoload -U compinit && compinit -u
 
 #export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+if [ -d "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages" ]
+then
+	export PYTHONPATH="$PYTHONPATH:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
+fi

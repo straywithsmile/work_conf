@@ -23,8 +23,12 @@ alias tl="tail log/debug.log"
 alias t="tmux"
 alias tt="tmux attach -t"
 
-if [[ -z "$LANG" ]]; then
-  export LANG='zh_CN.GB18030'
+if [[ $(uname) == "FreeBSD" ]]; then
+  export LANG="zh_CN.GB18030"
+elif [[ $(uname) == "Darwin" ]]; then
+  export LANG="zh_CN.UTF-8"
+else
+  export LANG="zh_CN.UTF-8"
 fi
 
 export GIT_EDITOR=vim

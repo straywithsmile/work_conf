@@ -2,15 +2,18 @@
 
 pwd=$PWD
 home=$HOME
+env_dir=${home}/work_conf
 
-ln -sv ${pwd}/bin ${home}/bin
-ln -sv ${pwd}/bash_profile ${home}/.bash_profile
-ln -sv ${pwd}/start.sh ${home}/start.sh
-ln -sv ${pwd}/stop.sh ${home}/stop.sh
-ln -sv ${pwd}/vim ${home}/.vim
-ln -sv ${pwd}/vimrc ${home}/.vimrc
-ln -sv ${pwd}/zprezto ${home}/.zprezto
-ln -sv ${pwd}/autojump ${home}/.autojump 
+ln -sv ${env_dir}/bin ${home}/bin
+ln -sv ${env_dir}/bash_profile ${home}/.bash_profile
+ln -sv ${env_dir}/start.sh ${home}/start.sh
+ln -sv ${env_dir}/stop.sh ${home}/stop.sh
+ln -sv ${env_dir}/vim ${home}/.vim
+ln -sv ${env_dir}/vimrc ${home}/.vimrc
+ln -sv ${env_dir}/zprezto ${home}/.zprezto
+ln -sv ${env_dir}/autojump ${home}/.autojump 
+ln -sv ${env_dir}/tmux.conf ${home}/.tmux.conf
+
 zsh ./stand_init.zsh
 
 mkdir -p ${home}/tx2env

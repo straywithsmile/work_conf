@@ -1,0 +1,8 @@
+windows:
+  - name: develop-session
+    root: "~"
+    layout: 809b,203x52,0,0{130x52,0,0,11,72x52,131,0[72x25,131,0,12,72x26,131,26,13]}
+    panes:
+      - vim
+      - ls -al
+      - ls -al

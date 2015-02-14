@@ -1,0 +1,10 @@
+windows:
+  - name: sample-three-panes
+    root: ~
+    layout: main-vertical
+    panes:
+      - vim
+      - commands:
+        - git pull
+        - git status
+      - ls

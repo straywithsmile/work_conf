@@ -22,6 +22,7 @@ alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
 alias t="tmux"
 alias tt="tmux attach -t"
+alias to="teamocil"
 
 if [[ $(uname) == "FreeBSD" ]]; then
   export LANG="zh_CN.GB18030"
@@ -67,3 +68,5 @@ if [ -d "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2
 then
 	export PYTHONPATH="$PYTHONPATH:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages"
 fi
+
+compctl -g '~/.teamocil/*(:t:r)' teamocil

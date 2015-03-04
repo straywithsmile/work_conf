@@ -184,4 +184,5 @@ echo "use ${engine_dir} start ${logic_dir} ${START_FLAG}"
 #valgrind --tool=memcheck --leak-check=yes --error-limit=no ./txos.bak $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/"
 #nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/" 2>&1 > "${logic_dir}${port}_oslog/debug.log" &
 #nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
-nohup ./txos $configname -n -f -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
+#nohup ./txos $configname -n -f -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
+nohup ./txos $configname -n -f -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &

@@ -13,6 +13,7 @@ ln -sv ${env_dir}/vimrc ${home}/.vimrc
 ln -sv ${env_dir}/zprezto ${home}/.zprezto
 ln -sv ${env_dir}/autojump ${home}/.autojump 
 ln -sv ${env_dir}/tmux.conf ${home}/.tmux.conf
+ln -sv ${env_dir}/teamocil ${home}/.teamocil
 
 zsh ./stand_init.zsh
 

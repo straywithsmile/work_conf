@@ -63,46 +63,23 @@ endfun
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 autocmd BufWritePre * :%s/\s\+$//e
 
-" 配色方案
-if has("gui_running")
-    colo solarized
-else
-    colo desert
-endif
-"--------------------------------------------------
-" Name: solarized
-" Description: 一个漂亮的配色方案
-" Git: https://github.com/altercation/vim-colors-solarized.git
-"--------------------------------------------------
-let g:solarized_termcolors=256
-let g:solarized_termtrans=0
-let g:solarized_contrast="normal"
-let g:solarized_visibility="high"
-let g:solarized_underline=1
-let g:solarized_italic=0
-let g:solarized_degrade=0
-let g:solarized_bold=1
-let g:solarized_diffmode="normal"
-let g:solarized_hitrail=0
-let g:solarized_menu=1
-
 " Airline
 set laststatus=2
 set noshowmode
 set t_Co=256
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline_powerline_fonts = 1
-highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
+"highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 function! CurDir()
     let curdir = substitute(getcwd(), $HOME, "~", "g")
     return curdir
 endfunction
-set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+"set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}
 
-" 设置alt+左右键切换标签
 nnoremap <silent> <M-left> gT
 nnoremap <silent> <M-right> gt
-" 设置ctrl+左右键切换缓冲区
+
 nnoremap <silent> <C-left> :bNext<cr>
 nnoremap <silent> <C-right> :bnext<cr>
 

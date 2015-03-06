@@ -16,7 +16,7 @@ set incsearch
 set autoindent
 set tabstop=4
 set shiftwidth=4
-set expandtab
+"set expandtab
 set mouse=n
 set nocompatible
 
@@ -60,8 +60,8 @@ function ID_search()
     let x = substitute(x, "\n", " ", "g")
     execute "next " . x
 endfun
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-autocmd BufWritePre * :%s/\s\+$//e
+"au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+"autocmd BufWritePre * :%s/\s\+$//e
 
 " Airline
 set laststatus=2
@@ -83,12 +83,9 @@ nnoremap <silent> <M-right> gt
 nnoremap <silent> <C-left> :bNext<cr>
 nnoremap <silent> <C-right> :bnext<cr>
 
-" start screen 自定义Header
 let g:startify_custom_header = [
     \'   *********************************************',
-    \'   *****************OPEN VIMS*******************',
-    \'   *************Author Hy JayFeng***************',
-    \'   ************email:673592063@qq.com***********',
+    \'   ***************thanks: OPEN VIMS*************',
     \'   *********************************************',
     \'']
 

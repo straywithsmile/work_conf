@@ -1,0 +1,142 @@
+if has("win32")
+    set nocompatible
+    source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+endif
+
+syntax on
+filetype plugin indent on
+
+" basic config
+"set nu
+set hlsearch
+set incsearch
+set autoindent
+set tabstop=4
+set shiftwidth=4
+"set expandtab
+set mouse=n
+set nocompatible
+
+syntax enable
+"set background=dark
+"colorscheme solarized
+
+" tags settting
+set tags=tags;
+set autochdir
+
+let NERDTreeChristmasTree=1
+let NERDTreeMouseMode=2
+let NERDTreeHighlightCursorline=0
+
+let NERDCompactSexyComs=1
+let NERDSpaceDelims=1
+
+"Nerd part----------
+map <F2> :silent! NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+"autocmd vimenter * NERDTree
+
+"Tagbar part----------
+map <F8> :silent! TagbarToggle<CR>
+"autocmd vimenter * nested :call tagbar#autoopen(1)
+"autocmd vimenter * Tagbar
+autocmd bufenter * if (winnr("$") == 1 && exists("b:TagbarType") &&b:TagbarType == "primary") | q | endif
+
+"----------
+autocmd bufenter * if (winnr("$") == 2 && exists("b:NERDTreeType") && exists("b:TagbarType")) | q | q | endif
+
+"map <F7> :silent! FufCoverageFile<CR>
+
+" 保存上次文件打开位置
+map _u :call ID_search()<Bar>execute "/\\<" . g:word . "\\>"<CR>
+map _n :n<Bar>execute "/\\<" . g:word . "\\>"<CR>
+function ID_search()
+    let g:word = expand("<cword>")
+    let x = system("lid --key=none ". g:word)
+    let x = substitute(x, "\n", " ", "g")
+    execute "next " . x
+endfun
+"au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+"autocmd BufWritePre * :%s/\s\+$//e
+
+" Airline
+set laststatus=2
+set noshowmode
+set t_Co=256
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "g")
+    return curdir
+endfunction
+"set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}
+
+nnoremap <silent> <M-left> gT
+nnoremap <silent> <M-right> gt
+
+nnoremap <silent> <C-left> :bNext<cr>
+nnoremap <silent> <C-right> :bnext<cr>
+
+let g:startify_custom_header = [
+    \'   *********************************************',
+    \'   ***************thanks: OPEN VIMS*************',
+    \'   *********************************************',
+    \'']
+
+au BufRead,BufNewFile *.c       if (getcwd() =~ 'logic' && &ft == 'c') | set ft=lpc | let lpc_pre_v22=1 | endif
+au BufRead,BufNewFile *.h       if (getcwd() =~ 'logic' && &ft == 'h') | set ft=lpc | let lpc_pre_v22=1 | endif
+au BufRead,BufNewFile *.go      set ft=go
+set ambiwidth=double
+set termencoding=cp936
+set enc=cp936
+
+"git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+set nocompatible               " be iMproved
+filetype off                   " required!
+ 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+ 
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+ 
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+" ...
+ 
+filetype plugin indent on     " required!
+"
+" Brief help  -- 此处后面都是vundle的使用命令
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :BundleSearch
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+Bundle 'The-NERD-tree'
+Bundle 'winmanager'
+Bundle 'taglist.vim'
+Bundle 'minibufexpl.vim'
+Bundle 'bufexplorer.zip'
+Bundle 'SuperTab'
+Bundle 'majutsushi/tagbar'
+Bundle 'ctrlp.vim'

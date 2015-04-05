@@ -51,6 +51,10 @@ mpUserName = {
 	"zhulei"    : "朱蕾",
 	"jiangjun"  : "点点",
 	"fzp217"    : "扶志鹏",
+	"gzhuangzibin" : "黄子斌",
+	"zhangxing" : "张星",
+	"张星" : "张星",
+	"祝美祺" : "祝美祺",
 }
 
 mpUserType = {
@@ -65,7 +69,7 @@ mpUserType = {
 	"许华珍"    : "经典版",
 	"张星"      : "经典版",
 	"向建波"    : "免费版",
-	"陈秋"      : "经典版",
+	"陈秋"      : "免费版",
 	"林祺颖"    : "经典版",
 
 	"苏打"      : "经典版",
@@ -83,6 +87,9 @@ mpUserType = {
 	"qa_auto"   : "经典版",
 	"点点"      : "经典版",
 	"扶志鹏"    : "经典版",
+	"黄子斌"    : "免费版",
+	"张星"	    : "大航海",
+	"祝美祺"    : "大航海",
 }
 
 mpShortName = {
@@ -94,7 +101,14 @@ mpShortName = {
 	"qa_auto"   : "qa",
 	"陈潇然"    : "cxr",
 	"扶志鹏"    : "fzp",
+	"黄子斌"    : "hzb",
 }
+
+mpProductID2Name = {
+	"xy2"  : "经典版",
+	"xy2d" : "免费版",
+	"dhh" : "大航海",
+	}
 
 def simplify_server_info(server_info):
 	new_server_info = { }
@@ -104,10 +118,22 @@ def simplify_server_info(server_info):
 
 mpAllFeeServer = {}
 mpAllFreeServer = {}
+mpDahanghaiServer = {}
 
-def get_developer_type(username):
+def get_server_type(server_info):
+	#lookup version data
+	if "product" in server_info:
+		return server_info["product"]
+
+	#find version by username
+	if not "username" in server_info:
+		return "经典版"
+
+	username = server_info["username"]
+
 	if not username in mpUserType:
 		return "经典版"
+
 	return mpUserType[username]
 
 def get_server_list(mpAllServer):
@@ -123,7 +149,12 @@ def get_server_list(mpAllServer):
 			info["desc"] = "unknown"
 		if not "logic_dir" in info:
 			info["logic_dir"] = "unknown"
-		data = [info["ip"], info["port"], info["username"], info["use"], info["desc"], info["logic_dir"], "\n"]
+
+		username = info["username"]
+		if get_server_type(info) == "大航海":
+			username = username.decode("gbk").encode("utf-8")
+
+		data = [info["ip"], info["port"], username, info["use"], info["desc"], info["logic_dir"], "\n"]
 		send_data = send_data + "|".join(data)
 	return send_data
 
@@ -159,13 +190,19 @@ def update_server_info(ip, query_string):
 	
 	server_info["update_time"] = int(time.time())
 	server_info["ip"] = ip 
-	if server_info["username"] == "叶江" or server_info["username"] == "陈秋":
+
+	if "product_id" in server_info:
+		server_info["product"] = mpProductID2Name[server_info["product_id"]]
+
+	server_type = get_server_type(server_info)
+	if server_type == "经典版":
 		mpAllFeeServer[server_key] = server_info
+	elif server_type == "免费版":
 		mpAllFreeServer[server_key] = server_info
-	elif get_developer_type(server_info["username"]) == "经典版":
-		mpAllFeeServer[server_key] = server_info
+	elif server_type == "大航海":
+		mpDahanghaiServer[server_key] = server_info
 	else:
-		mpAllFreeServer[server_key] = server_info
+		mpAllFeeServer[server_key] = server_info
 
 	return "register succ\n%s\n%s" % (server_key, time.ctime(now))
 
@@ -203,7 +240,6 @@ def get_ngp_serverlist(mpAllServer):
 			server_info["name"] = "%s:%s" % (mpShortName[developer], info["port"])
 
 		server_info["x"], server_info["y"] = parse_xy(idx)
-		print server_info
 		idx += 1
 		developer2server[developer].append(server_info)
 
@@ -237,6 +273,8 @@ def serve_request(environ, start_response):
 		body = get_ngp_serverlist(mpAllFeeServer)
 	elif environ["PATH_INFO"] == "/get_ngp_server_list_free":
 		body = get_ngp_serverlist(mpAllFreeServer)
+	elif environ["PATH_INFO"] == "/get_dhh_server_list":
+		body = get_server_list(mpDahanghaiServer)
 
 	start_response(status, headers)
 	return [body]

@@ -20,6 +20,7 @@ internal_server = {
 	"5" : ["192.168.229.102", "新人1", "xr",  "32200", "internal", "richardcao"],
 	"6" : ["123.58.170.180",  "同步",  "tb",  "32200", "internal", "richardcao"],
 	"7" : ["192.168.228.78",  "内服21.193", "nf3", "32201", "internal", "richardcao"],
+	"8" : ["123.58.169.192",  "mongo", "mongo", "32200", "mongo", "richardcao"],
 }
 #打开http链接，得到gdsc数据
 def open_http(product, serverlist_url):

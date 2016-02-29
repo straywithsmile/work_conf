@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+URL=$1
+command="curl -s -d '{\"url\":\"${URL}\"}' http://g.126.fm/l/"
+result=`eval $command`
+echo $result | cut -d \" -f 4
+
+# | awk -F'\"' '{print $4}'

@@ -3,10 +3,11 @@
 engine_dir=$PWD/$1
 logic_dir=$PWD/$2
 port=$3
-compile=$4
 configname=${engine_dir}config.$port
 #shell_port=`expr $3 + 10`
-envdir=$PWD/tx2env/
+osdfile=/tmp/tx2db/osd/release/internal/osd
+hostfile=/tmp/tx2db/host.conf
+
 
 if [ ! -d $logic_dir ]
 then
@@ -40,21 +41,21 @@ mkdir -p "${engine_dir}log"
 if [ -f ${engine_dir}osd ]
 then
 	CKSUM=`md5 ${engine_dir}osd | awk '{print $4}'`
-	STDSUM=`md5 ${envdir}osd | awk '{print $4}'`
+	STDSUM=`md5 ${osdfile} | awk '{print $4}'`
 
 	echo "$CKSUM $STDSUM"
 	if [ "$CKSUM" != "$STDSUM" ]
 	then
 		echo "OSD md5 check error, Overwrite it"
-		#cp ${envdir}osd ${engine_dir}osd
+		#cp ${osdfile} ${engine_dir}osd
 	fi
 else
-	cp ${envdir}osd ${engine_dir}
+	cp ${osdfile} ${engine_dir}
 fi
 
 #if [ ! -f ${engine_dir}osd ]
 #then
-#	cp ${envdir}osd ${engine_dir}
+#	cp ${osdfile} ${engine_dir}
 #fi
 
 if [ ! -f ${engine_dir}osd ]
@@ -71,12 +72,7 @@ fi
 mkdir -p ${logic_dir}dat/
 if [ ! -f ${logic_dir}dat/host.conf ]
 then
-	cp ${envdir}host.conf ${logic_dir}dat/
-fi
-
-if [ ! -f ${logic_dir}etc/internal_server_info.txt ]
-then
-	cp ${envdir}internal_server_info.txt ${logic_dir}etc/
+	cp ${hostfile} ${logic_dir}dat/
 fi
 
 logic_branch=${logic_dir##*logic/}
@@ -87,8 +83,6 @@ logic_branch=${logic_dir##*logic/}
 #	START_FLAG="-DACROSS_TARGET_SERVER=1"
 #fi
 
-#echo "use ${engine_dir} compile ${logic_dir} ${START_FLAG}"
-#exit 0
 TX_HOSTNAME=`hostname`
 TX_HOSTIP=`grep $TX_HOSTNAME /etc/hosts|cut -d " " -f 1|head -1`
 
@@ -128,15 +122,7 @@ echo "" >> $configname
 
 cd ${engine_dir}
 
-#if [ ! -z ${compile} ]
-#then
-#	./txos $configname -n -b ${START_FLAG}
-#	echo "use ${engine_dir} compile ${logic_dir} ${START_FLAG}"
-#	tail ${logic_dir}log/sys/error.dat
-#	exit 0
-#fi
-
-if [ ! -z ${compile} ]
+if [ ${port} == "compile" ]
 then
 	./txos $configname -n -b
 	echo "use ${engine_dir} compile ${logic_dir}"
@@ -155,6 +141,8 @@ fi
 #valgrind --tool=memcheck --leak-check=full ./txos $configname -n -f
 #nohup ./txos $configname -DMY_LOGIC=${logic_dir} -DINTERNAL_500=1 -DD1=1 -n -f > ${logic_dir}log/debug.log 2>&1 &
 #cp /tmp/tx2db/89/215746989.dat_bak /tmp/tx2db/89/215746989.dat
+
+#./txos $configname -n -f -D__SELF_TEST__ -D__RSHELL__
 
 export HOSTNUM=500
 
@@ -185,4 +173,5 @@ echo "use ${engine_dir} start ${logic_dir} ${START_FLAG}"
 #nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -l"${logic_dir}${port}_oslog/" 2>&1 > "${logic_dir}${port}_oslog/debug.log" &
 #nohup ./txos $configname -n -f ${START_FLAG} -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
 #nohup ./txos $configname -n -f -D__RSHELL__ -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
-nohup ./txos $configname -n -f -D__SELF_TEST__ 2>&1 > "${logic_dir}log/debug.log" &
+nohup ./txos $configname -n -f -D__SELF_TEST__ -D__RSHELL__ 2>&1 > "${logic_dir}log/debug.log" &
+#./txos $configname -n -D__SELF_TEST__

@@ -1,8 +1,9 @@
 #!/usr/local/bin/bash
 #
+port=`expr $1 + 1`
 if [ $# -eq 2 ]
 then
-	echo "update $2" | nc -w1 localhost $1
+	echo "update $2" | nc -w1 localhost $port
 else
 	echo "lpcupdate port file"
 fi

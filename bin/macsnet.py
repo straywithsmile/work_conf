@@ -21,6 +21,7 @@ internal_server = {
 	"6" : ["123.58.170.180",  "同步",  "tb",  "32200", "internal", "richardcao"],
 	"7" : ["192.168.228.78",  "内服21.193", "nf3", "32201", "internal", "richardcao"],
 	"8" : ["123.58.169.192",  "mongo", "mongo", "32200", "mongo", "richardcao"],
+	"9" : ["192.168.45.6",  "new", "nf3", "32200", "internal", "richardcao"],
 }
 #打开http链接，得到gdsc数据
 def open_http(product, serverlist_url):
@@ -216,7 +217,7 @@ def process(user_input):
 	username = "richardcao"
 	port = "32200"
 	product = "dh2"
-	serverlist_url = "http://dhrsync.x.net" + "ease.com:8660/galaxy/port/get_server_list"
+	serverlist_url = "http://dhrsync.x.netease.com:8660/galaxy/port/get_server_list"
 	game_paths = ""
 	
 	#得到列表

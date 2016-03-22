@@ -43,6 +43,7 @@ alias vo="vim -R"
 alias todo="vim /home/richard/.todo.etd"
 alias vi="vim"
 alias lchg="svn di -rPREV:HEAD"
+alias mergelast="svn merge -rPREV:HEAD --ignore-ancestry"
 alias post-review="post-review --target-groups=xy2_server"
 export LANG=zh_CN.GBK
 

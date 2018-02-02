@@ -6,15 +6,17 @@ set nocp
 set helplang=cn
 "set mouse=a
 set scrolloff=3
-set background=dark
+"set background=dark
 set incsearch
 set ambiwidth=double
 set hlsearch
 "set foldmethod=syntax
 "set foldcolumn=4
 "set foldlevelstart=3
-set termencoding=cp936
-set enc=cp936
+"set termencoding=cp936
+"set enc=cp936
+"set enc=utf8
+set fencs=utf8,cp936,gbk,gb2312,gb18030
 "set magic
 filetype indent plugin on
 "runtime ftplugin/man.vim
@@ -27,6 +29,12 @@ au BufRead,BufNewFile *.c       if (getcwd() =~ 'logic' && &ft == 'c') | set ft=
 au BufRead,BufNewFile *.h       if (getcwd() =~ 'logic' && &ft == 'h') | set ft=lpc | let lpc_pre_v22=1 | endif
 au BufRead,BufNewFile *.go      set ft=go
 set backspace=indent,eol,start
+
+
+set list
+"set listchars=tab:>-,trail:-
+""set listchars=tab:\ \ ,trail:-
+set lcs=tab:>\ ,trail:-,nbsp:-
 
 ""&lt;ESC&gt;i:inoremap ( ()&lt;ESC&gt;i
 ""&lt;ESC&gt;i:inoremap ) &lt;c-r&gt;=ClosePair(')')&lt;CR&gt;
@@ -68,7 +76,7 @@ function! FillRound()
 	end
 endfunction 
 
-inoremap { <ESC>:call FillRound()<CR>a
+"inoremap { <ESC>:call FillRound()<CR>a
 
 "function ClosePair(char)
 "	if getline('.')[col('.') - 1] == a:char

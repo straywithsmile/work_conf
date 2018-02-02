@@ -76,3 +76,4 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 alias mergelast="svn merge -rPREV:COMMITTED --ignore-ancestry"
+export GOPATH=/home/richardcao/go

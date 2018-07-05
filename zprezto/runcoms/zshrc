@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 alias ls="ls -G"
 alias vo="vim -R"
-alias todo="vim /home/richard/.todo.etd"
+alias todo="vim ~/.todo.etd"
 alias vi="vim"
 alias lchg="svn di -rPREV:HEAD"
 alias post-review="post-review --target-groups=xy2_server"

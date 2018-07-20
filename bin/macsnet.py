@@ -18,7 +18,7 @@ internal_server = {
 	"3" : ["192.168.229.100", "模拟1", "mn1", "32200", "internal", "richardcao"],
 	"4" : ["192.168.229.101", "模拟2", "mn2", "32200", "internal", "richardcao"],
 	"5" : ["192.168.229.102", "新人1", "xr",  "32200", "internal", "richardcao"],
-	"6" : ["123.58.170.180",  "同步",  "tb",  "32200", "internal", "richardcao"],
+	"6" : ["42.186.26.90",  "同步",  "tb",  "32200", "internal", "richardcao"],
 	"7" : ["192.168.228.78",  "内服21.193", "nf3", "32201", "internal", "richardcao"],
 	"8" : ["123.58.169.192",  "mongo", "mongo", "32200", "mongo", "richardcao"],
 	"9" : ["192.168.45.6",  "new", "nf3", "32200", "internal", "richardcao"],

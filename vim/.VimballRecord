@@ -1,1 +1,0 @@
-tail-3.0.vba: call delete('/home1/ourhome/richard/.vim/tail_options.vim')|call delete('/home1/ourhome/richard/.vim/autoload/tail.vim')|call delete('/home1/ourhome/richard/.vim/doc/tail.txt')|call delete('/home1/ourhome/richard/.vim/macros/vim-tail.zsh')|call delete('/home1/ourhome/richard/.vim/plugin/tail.vim')

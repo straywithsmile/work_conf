@@ -10,15 +10,17 @@ set scrolloff=3
 set incsearch
 set ambiwidth=double
 set hlsearch
+set noet
 "set foldmethod=syntax
 "set foldcolumn=4
 "set foldlevelstart=3
 "set termencoding=cp936
 "set enc=cp936
 "set enc=utf8
-set fencs=cp936,utf8,gbk,gb2312,gb18030
+set fencs=utf8,cp936,gbk,gb2312,gb18030
 "set magic
 filetype indent plugin on
+"set autochdir
 set tags=./.tags;,.tags
 "runtime ftplugin/man.vim
 map <C-X><C-X> :!ctags -R --C++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -46,11 +48,11 @@ set lcs=tab:>\ ,trail:-,nbsp:-
 ""&lt;ESC&gt;i:inoremap " ""&lt;ESC&gt;i
 ""&lt;ESC&gt;i:inoremap ' ''&lt;ESC&gt;i
 ""&lt;ESC&gt;ifunction! ClosePair(char)
-""&lt;ESC&gt;i	if getline('.')[col('.') - 1] == a:char
-""&lt;ESC&gt;i		return "\<Right>"
-""&lt;ESC&gt;i	else
-""&lt;ESC&gt;i		return a:char
-""&lt;ESC&gt;i	endif
+""&lt;ESC&gt;i  if getline('.')[col('.') - 1] == a:char
+""&lt;ESC&gt;i          return "\<Right>"
+""&lt;ESC&gt;i  else
+""&lt;ESC&gt;i          return a:char
+""&lt;ESC&gt;i  endif
 ""&lt;ESC&gt;iendfunction
 
 ":inoremap ( ()<ESC>i
@@ -66,25 +68,25 @@ set lcs=tab:>\ ,trail:-,nbsp:-
 "key :inoremap { <CR>{<CR>}<ESC>O
 
 function! FillRound()
-	let line = getline(".")
-	let previous_char = l:line[col(".")-1]
+        let line = getline(".")
+        let previous_char = l:line[col(".")-1]
 
-	"if index(["("], l:previous_char) != -1
-	if previous_char == '('
-		execute "normal! a\{});\<Esc>\<Left>\<Left>i"
-	else
-		execute "normal! a\<CR>{\<CR>}\<Esc>O"
-	end
+        "if index(["("], l:previous_char) != -1
+        if previous_char == '('
+                execute "normal! a\{});\<Esc>\<Left>\<Left>i"
+        else
+                execute "normal! a\<CR>{\<CR>}\<Esc>O"
+        end
 endfunction 
 
 "inoremap { <ESC>:call FillRound()<CR>a
 
 "function ClosePair(char)
-"	if getline('.')[col('.') - 1] == a:char
-"		return "\<Right>"
-"	else
-"		return a:char
-"	endif
+"       if getline('.')[col('.') - 1] == a:char
+"               return "\<Right>"
+"       else
+"               return a:char
+"       endif
 "endfunction
 "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
@@ -92,10 +94,8 @@ endfunction
 inoremap <C-l> <Right>
 :imap jj <Esc>
 
-" 状态栏
-set laststatus=2      " 总是显示状态栏
-highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
-" 获取当前路径，将$HOME转化为~
+" 状态set laststatus=2      " 状态highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
+" 路OME转~
 function! CurDir()
     let curdir = substitute(getcwd(), $HOME, "~", "g")
     return curdir
@@ -131,10 +131,10 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent                " always set autoindenting on
 
 endif " has("autocmd")
-set autoindent		" always set autoindenting on
+set autoindent          " always set autoindenting on
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -142,36 +142,36 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+"let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+"
+"""let g:gutentags_ctags_tagfile = '.tags'
+"" tags 全/.cache/tags 目录目录
+"let s:vim_tags = expand('~/.cache/tags')
+"let g:gutentags_cache_dir = s:vim_tags
+"
+""  ctags "let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+"let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+"let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-"所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-"将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
+"  ~/.cache/tags 
 
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
+                  "if !isdirectory(s:vim_tags)
+"   silent! call mkdir(s:vim_tags, 'p')
+"endif
 
 let g:asyncrun_open = 6
 
 let g:asyncrun_bell = 1
 
-" 设置 F10 打开/关闭 Quickfix 窗口
-nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+"  F10 / Quickfix 
+
+                   nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
 nnoremap <silent> <F9> :AsyncRun gmake<cr>
 "nnoremap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 "set statusline+=%{gutentags#statusline()}

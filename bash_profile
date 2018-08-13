@@ -23,22 +23,21 @@ ENV=$HOME/.shrc; export ENV
 
 [ -x /usr/games/fortune ] && /usr/games/fortune freebsd-tips
 
-alias l='ls'
-alias ll="ls -alh"
-alias te="tail log/sys/error.dat"
+#alias l='ls'
+#alias ll="ls -alh"
+#alias te="tail log/sys/error.dat"
 alias tl="tail log/debug.log"
 alias t="tmux"
 alias tt="tmux attach -t"
-#PS1="\[\e]0;\w\a\]\n\[\e[33m\]\w\[\e[0m\]"
-PS1="\w "
-#PS1="`whoami`@`hostname | sed 's/\..*//'`"
-case `id -u` in
-        0) PS1="${PS1}# ";;
-        *) PS1="${PS1}$ ";;
-esac
-export PS1
-#export PS1="\w\$ "
-alias ls="ls -G"
+##PS1="\[\e]0;\w\a\]\n\[\e[33m\]\w\[\e[0m\]"
+#PS1="\w "
+##PS1="`whoami`@`hostname | sed 's/\..*//'`"
+#case `id -u` in
+#        0) PS1="${PS1}# ";;
+#        *) PS1="${PS1}$ ";;
+#esac
+#export PS1
+##export PS1="\w\$ "
 alias vo="vim -R"
 alias todo="vim /home/richard/.todo.etd"
 alias vi="vim"
@@ -47,7 +46,6 @@ alias mergelast="svn merge -rPREV:HEAD --ignore-ancestry"
 alias post-review="post-review --target-groups=xy2_server"
 export LANG=zh_CN.GBK
 
-export GOROOT=$HOME/go
 export PATH=$GOROOT/bin:$HOME/bin:$PATH
 
 export GIT_EDITOR=vim
@@ -55,10 +53,10 @@ export PYTHONDONTWRITEBYTECODE=x
 export SVN_EDITOR=vim
 export EDITOR=vim
 
-export GOROOT=$HOME/go
-export GOBIN=$GOROOT/bin
-export PATH=$PATH:$GOBIN
-export GOPATH=$HOME/go_src
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/project/go
+export GOBIN=$GOPATH/bin
+export PATH=$GOBIN:$PATH
 
 #gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"
 

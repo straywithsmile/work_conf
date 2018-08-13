@@ -24,7 +24,7 @@ filetype indent plugin on
 set tags=./.tags;,.tags
 "runtime ftplugin/man.vim
 map <C-X><C-X> :!ctags -R --C++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
+set fileformats=unix
 set pastetoggle=<F11>
 "set nu
 
@@ -144,6 +144,7 @@ Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'fatih/vim-go'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

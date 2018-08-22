@@ -4,6 +4,7 @@ set showcmd
 set smartindent
 set nocp
 set helplang=cn
+"test ssh commit
 "set mouse=a
 set scrolloff=3
 "set background=dark
